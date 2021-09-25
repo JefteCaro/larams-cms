@@ -7,6 +7,10 @@ use Jefte\Larams\Console\Commands\CreateLaramsModel;
 use Jefte\Larams\Console\Commands\CreateLaramsModule;
 use Jefte\Larams\Console\Commands\InstallLarams;
 use Jefte\Larams\Console\Commands\ClearCache;
+use Jefte\Larams\Console\Commands\CreateLaramsController;
+use Jefte\Larams\Console\Commands\CreateLaramsResource;
+use Jefte\Larams\Console\Commands\EstablishRoute;
+use Jefte\Larams\Console\Commands\CreateLaramsMigrations;
 
 class LaramsServiceProvider extends ServiceProvider
 {
@@ -46,7 +50,6 @@ class LaramsServiceProvider extends ServiceProvider
 
     public function registerMigrations()
     {
-
         $publishes = [];
 
         foreach(glob($this->resourcePath('migrations') . '/*', GLOB_NOSORT) as $file)
@@ -61,9 +64,13 @@ class LaramsServiceProvider extends ServiceProvider
     {
         $this->commands([
             InstallLarams::class,
+            CreateLaramsController::class,
             CreateLaramsModel::class,
             CreateLaramsModule::class,
+            CreateLaramsResource::class,
             ClearCache::class,
+            EstablishRoute::class,
+            CreateLaramsMigrations::class,
         ]);
     }
 
